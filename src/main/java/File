@@ -1,0 +1,83 @@
+
+        ClickListener clickListener = new ClickListener();
+        this.addMouseListener(clickListener);
+
+        DragListener dragListener = new DragListener();
+        this.addMouseMotionListener(dragListener);
+
+        task_corner = new Point(0,0);
+
+            private class ClickListener extends MouseAdapter {
+                public void mousePressed(MouseEvent e) {
+                }
+            }
+            private class DragListener extends MouseMotionAdapter {
+
+            }
+
+    Tasks tasks = new Tasks();
+    final int TASK_WIDTH = tasks.getWidth();
+    final int TASK_HEIGHT = tasks.getHeight();
+    Point task_corner;
+    Point previousPoint;
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Tasks extends JLabel {
+
+
+    public Tasks() {
+
+        this.setOpaque(true);
+        this.setText("TASK");
+        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setVerticalAlignment(SwingConstants.CENTER);
+        this.setHorizontalAlignment(SwingConstants.CENTER);
+        this.setSize(120, 120);
+
+        ActionListener Borrar = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        };
+
+        Random rand = new Random();
+        float r = rand.nextFloat();
+        float g = rand.nextFloat();
+        float b = rand.nextFloat();
+        Color randomColor = new Color(r, g, b);
+
+        this.setBackground(randomColor);
+
+        JButton close = new JButton();
+        close.setBackground(Color.red);
+        close.setVerticalAlignment(SwingConstants.CENTER);
+        close.setHorizontalAlignment(SwingConstants.CENTER);
+        close.setForeground(Color.white);
+        close.setOpaque(true);
+        close.setSize(45, 45);
+
+
+        close.addActionListener(Borrar);
+        this.add(close);
+    }
+}
+
+
+Tasks tasks = new Tasks("Tarea "+IntToString(i));
+                model.addElement(tasks);
+                i=i+1;
+
+                TareaPanel tareaPanel = new TareaPanel();
+                tareaPanel.setTareaPanelTxt(tasks.getTareatxt());
+
+                label1.add(tareaPanel);
+                System.out.println("Tarea Creada: "+tareaPanel.getTareaPanelTxt());
+                System.out.println(model);
